@@ -7,6 +7,7 @@ import 'screens/courses/course_list_screen.dart';
 import 'screens/feed_screen.dart';
 import 'screens/chat_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/notification_screen.dart';
 
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
@@ -33,6 +34,26 @@ class _MainShellState extends State<MainShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('YHA App'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.blueGrey,
+        elevation: 0.5,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications_none),
+            tooltip: 'Notifications',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

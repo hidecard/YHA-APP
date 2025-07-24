@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'enrollment_success_screen.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   const CourseDetailScreen({super.key});
@@ -115,7 +116,15 @@ class CourseDetailScreen extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.symmetric(vertical: 16),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const EnrollmentSuccessScreen(),
+                              ),
+                            );
+                          },
                           child: const Text(
                             'Enroll / Apply',
                             style: TextStyle(fontSize: 16),
