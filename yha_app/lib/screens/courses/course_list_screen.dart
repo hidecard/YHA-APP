@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'course_detail_screen.dart';
 
 class CourseListScreen extends StatelessWidget {
   const CourseListScreen({super.key});
@@ -63,7 +64,12 @@ class CourseListScreen extends StatelessWidget {
                   final course = courses[index];
                   return GestureDetector(
                     onTap: () {
-                      // TODO: Navigate to course detail
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CourseDetailScreen(),
+                        ),
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(
