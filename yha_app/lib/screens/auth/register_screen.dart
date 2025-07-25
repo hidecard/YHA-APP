@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../main.dart';
+import 'otp_verification_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -25,12 +26,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _error = null;
     });
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final cred = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+      await cred.user?.updateDisplayName(_nameController.text.trim());
       if (mounted) {
-        Navigator.pushReplacementNamed(context, '/main');
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const OTPVerificationScreen()),
+        );
       }
     } on FirebaseAuthException catch (e) {
       setState(() {
